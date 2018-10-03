@@ -6,3 +6,13 @@ Using DQN for stock trading
 prccd: daily close price daily
 
 ajexdi: adjustement factor cumulative by ex-date
+
+# one_stock.ipynb: simple example for demo
+
+# two_stock.ipynb: simplified multiple stocks example
+
+# DQN_stock.ipynb: version working on 28 stocks
+
+# qtrader_demo: folder for virtual machine
+
+
