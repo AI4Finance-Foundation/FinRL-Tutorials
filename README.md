@@ -7,12 +7,14 @@ prccd: daily close price daily
 
 ajexdi: adjustement factor cumulative by ex-date
 
-# one_stock.ipynb: simple example for demo
+# Testing
 
-# two_stock.ipynb: simplified multiple stocks example
+## one_stock.ipynb: simple example for demo
 
-# DQN_stock.ipynb: version working on 28 stocks
+## two_stock.ipynb: simplified multiple stocks example
 
-# qtrader_demo: folder for virtual machine
+## DQN_stock.ipynb: version working on 28 stocks
+
+## qtrader_demo: folder for virtual machine
 
 
