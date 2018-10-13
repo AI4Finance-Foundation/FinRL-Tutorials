@@ -48,7 +48,7 @@ pytest
 ## Replace files with files in this repository and change file address
 
 ### gym
-Find your gym package under environment folder, in moy computer it is under
+Find your gym package under environment folder, in my computer it is under
 ```bash
 /Users/xiongzhuoran/anaconda3/envs/venv/lib/python3.6/site-packages/gym/
 ```
