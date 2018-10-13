@@ -52,17 +52,36 @@ Find your gym package under environment folder, in my computer it is under
 ```bash
 /Users/xiongzhuoran/anaconda3/envs/venv/lib/python3.6/site-packages/gym/
 ```
-- Replece the file gym\envs\__init__.py with DQN_Stock_Trading/gym/envs/__init__.py in this repo
+- Replece the file 
+```bash
+gym\envs\__init__.py
+``` 
+with file from this repository
+```bash
+DQN_Stock_Trading/gym/envs/__init__.py 
+```
 
-- Add folder DQN_Stock_Trading/gym/envs/zxstock of this repository to gym\envs in your computer
+- Add folder in this repository to gym\envs in your computer
+```bash
+DQN_Stock_Trading/gym/envs/zxstock of this repository 
+```
 
-- Open gym/envs/zxstock/zxstock_env.py and gym/envs/zxstock/zxstock_testenv.py, change the address at line 9 and line 10 into where you want to save the image
+- Open 
+```bash
+gym/envs/zxstock/zxstock_env.py and gym/envs/zxstock/zxstock_testenv.py
+```
+change the address at line 9 and line 10 into where you want to save the image
 
 ### Baseline
-- Open your baselines folder cloned before, find baselines/baselines/run.py
+- Open your baselines folder cloned before, find 
+```bash
+baselines/baselines/run.py
+```
 
-- Replace it with DQN_Stock_Trading/baselines/baselines/run.py in this reposotory
-
+- Replace it with 
+```bash
+DQN_Stock_Trading/baselines/baselines/run.py in this reposotory
+```
 
 ## Training model and Testing
 If you only want to train the model run this
