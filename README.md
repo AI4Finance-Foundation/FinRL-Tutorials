@@ -95,3 +95,16 @@ python -m baselines.run --alg=ddpg --env=ZXStock-v0 --network=mlp --num_timestep
 ```
 
 
+
+### Some Other Commands May Need:
+Tensorflow Update
+```bash
+pip install --upgrade tensorflow==1.11.0
+```
+```bash
+pip3 install opencv-python
+pip3 install lockfile
+pip3 install -U numpy
+pip3 install mujoco-py==0.5.7
+```
+
