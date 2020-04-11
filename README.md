@@ -108,3 +108,6 @@ pip3 install -U numpy
 pip3 install mujoco-py==0.5.7
 ```
 
+#### Please cite the following paper
+Xiong, Z., Liu, X.Y., Zhong, S., Yang, H. and Walid, A., 2018. Practical deep reinforcement learning approach for stock trading, NeurIPS 2018 AI in Finance Workshop.
+
