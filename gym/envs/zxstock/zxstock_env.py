@@ -39,10 +39,10 @@ class StockEnv(gym.Env):
         # buy or sell maximum 5 shares
         self.action_space = spaces.Box(low = -5, high = 5,shape = (28,),dtype=np.int8) 
 
-        # [money]+[prices 1-28]+[owned shares 1-28]
+        # [money]+[prices 1-28]*[owned shares 1-28]
         self.observation_space = spaces.Box(low=0, high=np.inf, shape = (57,))
 
-        # # [money]+[prices 1-28]+[owned shares 1-28]
+        # # [money]+[prices 1-28]*[owned shares 1-28]
         # self.observation_space = spaces.Box(low=0, high=np.inf, shape = (5,))
         
         self.data = train_daily_data[self.day]
