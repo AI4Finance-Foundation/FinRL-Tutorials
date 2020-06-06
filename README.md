@@ -29,7 +29,8 @@ To activate a virtualenv:
 ```
 source venv/bin/activate
 ```
-
+Your terminate bash will become something like this
+(venv) bruceyang-MBP:DQN-DDPG_Stock_Trading bruce$
 
 ## Step 3: Install openAI gym environment under this virtual environment: venv
 #### Tensorflow versions
@@ -65,7 +66,7 @@ All unit tests in baselines can be run using pytest runner:
 pip install pytest
 pytest
 ```
-All unit tests have to get passed, in the end you will see something like: 94 passed, 49 skipped, 72 warnings in 355.29s. If there are any errors or failed tests, you have to debug it checking openai baselines issues or stackoverflow to make sure all unit tests passed in the end.
+All unit tests have to get passed, in the end you will see something like: 94 passed, 49 skipped, 72 warnings in 355.29s. If there are any errors or failed tests, you have to debug it, check the openai baselines [Issues](https://github.com/openai/baselines/issues) or stackoverflow to make sure all unit tests passed in the end.
 
 ## Step 6: Test-run the OpenAI Atari Pong
 ### If this works for you then you are ready to implement the stock trading application
@@ -79,6 +80,7 @@ This should get to the mean reward per episode about 20. To load and visualize t
 python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=0 --load_path=~/models/pong_20M_ppo2 --play
 ```
 
+## Step 7: Register the stock trading environment under gym
 
 ## Replace files with files in this repository and change file address
 
