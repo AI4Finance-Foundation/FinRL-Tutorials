@@ -153,7 +153,7 @@ python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timestep
 
 If you also want to see the testing/trading result
 ```bash
-python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=3e4 --play
+python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=2e4 --play
 ```
 
 Your result image is in the baseline folder.
