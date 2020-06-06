@@ -79,8 +79,7 @@ All unit tests have to get passed, in the end you will see something like: 94 pa
 
 ## Step 6: Test-run the OpenAI Atari Pong
 ### If this works for you then you are ready to implement the stock trading application
-`--save_path` and `--load_path` command-line option loads the tensorflow state from a given path before training, and saves it after the training, respectively.
-Let's imagine you'd like to train ppo2 on Atari Pong,  save the model and then later visualize what has it learnt. Set num_timesteps to 1e4 for test-run
+Set num_timesteps to 1e4 for test-run purpose
 ```bash
 python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=1e4 --save_path=~/models/pong_20M_ppo2
 ```
@@ -88,13 +87,14 @@ This should get to the mean reward per episode about 20. To load and visualize t
 ```bash
 python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=0 --load_path=~/models/pong_20M_ppo2 --play
 ```
+Now, you have successfully used the OpenAI baseline PPO algorithm to play the Atari Pong game.
 
 ## Step 7: Register the Stock Trading Environment under gym
 
 ## Replace files with files in this repository and change file address
 
 ### gym
-Find your gym package under environment folder, in my computer it is under
+Find your gym package under environment folder, in my computer (or an EC2 instance) it is under
 ```bash
 /Users/bruceyang/Documents/GitHub/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/
 ```
