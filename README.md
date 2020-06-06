@@ -155,7 +155,15 @@ If you also want to see the testing/trading result
 ```bash
 python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=2e5 --play
 ```
+
+Your result image is in the baseline folder.
+
 You can tune the hyperparameter num_timesteps to better train the model, note that if this number is too high, then you will face an overfitting problem, if it's too low, then you will face an underfitting problem.
+
+Compare to our result:
+
+<img src=result_trading.png width="500">
+
 
 
 ### Some Other Commands May Need:
