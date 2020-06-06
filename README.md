@@ -65,7 +65,20 @@ All unit tests in baselines can be run using pytest runner:
 pip install pytest
 pytest
 ```
-All unit tests have to get passed, in the end you will see something like: 94 passed, 49 skipped, 72 warnings in 355.29s. If there are any errors or failed tests, you have to debug it using stackoverflow to make sure all unit tests passed in the end.
+All unit tests have to get passed, in the end you will see something like: 94 passed, 49 skipped, 72 warnings in 355.29s. If there are any errors or failed tests, you have to debug it checking openai baselines issues or stackoverflow to make sure all unit tests passed in the end.
+
+## Step 6: Test-run the OpenAI Atari Pong
+### Saving and loading the model
+`--save_path` and `--load_path` command-line option loads the tensorflow state from a given path before training, and saves it after the training, respectively.
+Let's imagine you'd like to train ppo2 on Atari Pong,  save the model and then later visualize what has it learnt. Set num_timesteps to 1e4 for test-run
+```bash
+python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=1e4 --save_path=~/models/pong_20M_ppo2
+```
+This should get to the mean reward per episode about 20. To load and visualize the model, we'll do the following - load the model, train it for 0 steps, and then visualize:
+```bash
+python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=0 --load_path=~/models/pong_20M_ppo2 --play
+```
+
 
 ## Replace files with files in this repository and change file address
 
