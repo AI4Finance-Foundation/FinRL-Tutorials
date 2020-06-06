@@ -68,7 +68,7 @@ pytest
 All unit tests have to get passed, in the end you will see something like: 94 passed, 49 skipped, 72 warnings in 355.29s. If there are any errors or failed tests, you have to debug it checking openai baselines issues or stackoverflow to make sure all unit tests passed in the end.
 
 ## Step 6: Test-run the OpenAI Atari Pong
-### Saving and loading the model
+### If this works for you then you are ready to implement the stock trading application
 `--save_path` and `--load_path` command-line option loads the tensorflow state from a given path before training, and saves it after the training, respectively.
 Let's imagine you'd like to train ppo2 on Atari Pong,  save the model and then later visualize what has it learnt. Set num_timesteps to 1e4 for test-run
 ```bash
