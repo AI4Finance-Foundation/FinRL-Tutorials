@@ -17,6 +17,12 @@ brew install cmake openmpi
 
 
 ## Step 2: Create and Activate Virtual Environment
+- Clone this repo and cd into it:
+    ```bash
+    git clone https://github.com/hust512/DQN-DDPG_Stock_Trading.git
+    cd DQN-DDPG_Stock_Trading
+    ```
+Under this folder DDPG_Stock_Trading, create a virtual environment
 ```bash
 pip install virtualenv
 ```
@@ -29,8 +35,10 @@ To activate a virtualenv:
 ```
 source venv/bin/activate
 ```
-Your terminate bash will become something like this
+Your terminate bash will become something like this:
+```
 (venv) bruceyang-MBP:DQN-DDPG_Stock_Trading bruce$
+```
 
 ## Step 3: Install openAI gym environment under this virtual environment: venv
 #### Tensorflow versions
@@ -80,7 +88,7 @@ This should get to the mean reward per episode about 20. To load and visualize t
 python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=0 --load_path=~/models/pong_20M_ppo2 --play
 ```
 
-## Step 7: Register the stock trading environment under gym
+## Step 7: Register the Stock Trading Environment under gym
 
 ## Replace files with files in this repository and change file address
 
