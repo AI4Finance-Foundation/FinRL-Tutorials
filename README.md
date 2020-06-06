@@ -35,18 +35,18 @@ source venv/bin/activate
 #### Tensorflow versions
 The master branch supports Tensorflow from version 1.4 to 1.14. For Tensorflow 2.0 support, please use tf2 branch. Refer to [TensorFlow installation guide](https://www.tensorflow.org/install/)
 for more details.
-- Install gym and tensorflow packages
-  ```bash
-  pip install gym
-  pip install gym[atari] 
-  pip install tensorflow==1.14
-  ```
-- Other packages that might be missing
-  ```bash
-  pip install filelock
-  pip install matplotlib
-  pip install pandas
-  ```
+- Install gym and tensorflow packages:
+    ```bash
+    pip install gym
+    pip install gym[atari] 
+    pip install tensorflow==1.14
+    ```
+- Other packages that might be missing:
+    ```bash
+    pip install filelock
+    pip install matplotlib
+    pip install pandas
+    ```
 ## Step 4: Download and Install Official Baseline Package
 - Clone the repo and cd into it:
     ```bash
@@ -59,12 +59,13 @@ for more details.
     pip install -e .
     ```
 
-### Testing the installation
+## Step 5: Testing the installation
 All unit tests in baselines can be run using pytest runner:
 ```
 pip install pytest
 pytest
 ```
+All unit tests have to get passed, in the end you will see something like: 94 passed, 49 skipped, 72 warnings in 355.29s. If there are any errors or failed tests, you have to debug it using stackoverflow to make sure all unit tests passed in the end.
 
 ## Replace files with files in this repository and change file address
 
