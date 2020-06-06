@@ -4,7 +4,7 @@
 ## Prerequisites
 Python 3.6 envrionment
 
-### Step 1: Install OpenAI Baselines System Packages[Instruction](https://github.com/openai/baselines)
+### Step 1: Install OpenAI Baselines System Packages [OpenAI Instruction](https://github.com/openai/baselines)
 ### Ubuntu
 ```bash
 sudo apt-get update && sudo apt-get install cmake libopenmpi-dev python3-dev zlib1g-dev
@@ -31,23 +31,25 @@ source venv/bin/activate
 ```
 
 
-### Install gym under this environment
+### Step 3: Install openAI gym environment under this virtual environment: venv
+#### Tensorflow versions
+The master branch supports Tensorflow from version 1.4 to 1.14. For Tensorflow 2.0 support, please use tf2 branch. Refer to [TensorFlow installation guide](https://www.tensorflow.org/install/)
+for more details.
 ```bash
 pip install gym
+pip install gym[atari] 
+pip install filelock
+pip install matplotlib
+pip install pandas
+pip install tensorflow==1.14
 ```
 
-## Download Official Baseline Package
+## Step 4: Download and Install Official Baseline Package
 - Clone the repo and cd into it:
     ```bash
     git clone https://github.com/openai/baselines.git
     cd baselines
     ```
-- Install tendorflow
-    ```bash
-    pip install Tensorflow
-    ```
-    should be sufficient. Refer to [TensorFlow installation guide](https://www.tensorflow.org/install/)
-    for more details.
 
 - Install baselines package
     ```bash
