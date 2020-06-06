@@ -89,7 +89,7 @@ python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=0 --
 ```
 Now, you have successfully used the OpenAI baseline PPO algorithm to play the Atari Pong game.
 
-## Step 7: Register the Stock Trading Environment under gym
+## Step 7: Register Stock Trading Environment under gym
 
 Find your gym package under environment folder, in my computer (or an EC2 instance) it is under
 ```bash
@@ -153,7 +153,7 @@ python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timestep
 
 If you also want to see the testing/trading result
 ```bash
-python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=2e5 --play
+python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=1e5 --play
 ```
 
 Your result image is in the baseline folder.
