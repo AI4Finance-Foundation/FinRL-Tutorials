@@ -39,6 +39,7 @@ Your terminate bash will become something like this:
 ```
 (venv) bruceyang-MBP:DQN-DDPG_Stock_Trading bruce$
 ```
+There will be a folder named venv under DQN-DDPG_Stock_Trading
 
 ## Step 3: Install openAI gym environment under this virtual environment: venv
 #### Tensorflow versions
@@ -95,15 +96,27 @@ python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=0 --
 ### gym
 Find your gym package under environment folder, in my computer it is under
 ```bash
-/Users/xiongzhuoran/anaconda3/envs/venv/lib/python3.6/site-packages/gym/
+/Users/bruceyang/Documents/GitHub/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/
 ```
-- Replece the file
+If this virtual environment doesn't work for you, then you have to install everything into your local, then the gym package will be installed under anaconda3:
 ```bash
-gym\envs\__init__.py
+/Users/bruceyang/anaconda3/lib/python3.6/site-packages/gym/
 ```
-with file from this repository
+
+- Register the RLStock-v0 environment into your venv gym environment:
+```bash
+/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/__init__.py
+```
+check file from this repository
 ```bash
 DQN_Stock_Trading/gym/envs/__init__.py
+```
+copy this part into your venv gym/envs/__init__.py:
+```bash
+register(
+    id='ZXStock-v0',
+    entry_point='gym.envs.zxstock:StockEnv',
+)
 ```
 
 - Add folder in this repository to gym\envs in your computer
