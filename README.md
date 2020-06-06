@@ -77,7 +77,7 @@ pytest
 ```
 All unit tests have to get passed, in the end you will see something like: 94 passed, 49 skipped, 72 warnings in 355.29s. If there are any errors or failed tests, you have to debug it, check the openai baselines [Issues](https://github.com/openai/baselines/issues) or stackoverflow to make sure all unit tests passed in the end.
 
-## Step 6: Test-run the OpenAI Atari Pong
+## Step 6: Test-run OpenAI Atari Pong game
 ### If this works for you then you are ready to implement the stock trading application
 Set num_timesteps to 1e4 for test-run purpose
 ```bash
@@ -104,19 +104,20 @@ If this virtual environment doesn't work for you, then you have to install every
 ```
 
 - Register the RLStock-v0 environment into your venv gym environment:
+Check this file from our repository
 ```bash
-/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/__init__.py
+DQN-DDPG_Stock_Trading/gym/envs/__init__.py
 ```
-check file from this repository
-```bash
-DQN_Stock_Trading/gym/envs/__init__.py
-```
-copy this part into your venv gym/envs/__init__.py:
+Copy this part:
 ```bash
 register(
-    id='ZXStock-v0',
-    entry_point='gym.envs.zxstock:StockEnv',
+    id='RLStock-v0',
+    entry_point='gym.envs.rlstock:StockEnv',
 )
+```
+into your venv gym environment:
+```bash
+/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/__init__.py
 ```
 
 - Add folder in this repository to gym\envs in your computer
