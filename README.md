@@ -95,7 +95,7 @@ Find your gym package under environment folder, in my computer (or an EC2 instan
 ```bash
 /Users/bruceyang/Documents/GitHub/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/
 ```
-If this virtual environment doesn't work for you, then you have to install everything into your local, then the gym package will be installed under anaconda3:
+If the virtual environment doesn't work for you, then you have to install everything into your local, then the gym package will be installed under anaconda3:
 ```bash
 /Users/bruceyang/anaconda3/lib/python3.6/site-packages/gym/
 ```
@@ -148,12 +148,12 @@ DQN_Stock_Trading/baselines/baselines/run.py in this reposotory
 ## Training model and Testing
 If you only want to train the model run this
 ```bash
-python -m baselines.run --alg=ddpg --env=ZXStock-v0 --network=mlp --num_timesteps=1e4
+python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=1e4
 ```
 
 If you also want to see the testing result
 ```bash
-python -m baselines.run --alg=ddpg --env=ZXStock-v0 --network=mlp --num_timesteps=1e4 --play
+python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=1e4 --play
 ```
 
 
