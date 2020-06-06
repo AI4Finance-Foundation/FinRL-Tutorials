@@ -4,18 +4,32 @@
 ## Prerequisites
 Python 3.6 envrionment
 
-### Step 1: Install OpenAI Baselines [baselines](https://github.com/openai/baselines)
-
-### CMake, OpenMPI
-Installation of system packages CMake, OpenMPI on Mac 
+### Step 1: Install OpenAI Baselines System Packages[Instruction](https://github.com/openai/baselines)
+### Ubuntu
+```bash
+sudo apt-get update && sudo apt-get install cmake libopenmpi-dev python3-dev zlib1g-dev
+```
+### Mac OS X
+Installation of system packages on Mac requires [Homebrew](https://brew.sh). With Homebrew installed, run the following:
 ```bash
 brew install cmake openmpi
 ```
 
-### Activate your envrionment using using conda or Anaconda
+
+### Step 2: Create and Activate Virtual Environment
 ```bash
-source activate myenv
+pip install virtualenv
 ```
+Virtualenvs are essentially folders that have copies of python executable and all python packages.
+To create a virtualenv called venv with python3, one runs
+```bash
+virtualenv -p python3 venv
+```
+To activate a virtualenv:
+```
+source venv/bin/activate
+```
+
 
 ### Install gym under this environment
 ```bash
