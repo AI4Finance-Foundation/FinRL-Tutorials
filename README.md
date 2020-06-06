@@ -1,15 +1,17 @@
 # Practical Deep Reinforcement Learning Approach for Stock Trading
 
 
-## Prerequisites 
-Python 3.6 envrionment 
+## Prerequisites
+Python 3.6 envrionment
+
+### Step 1: Install OpenAI Baselines [baselines](https://github.com/openai/baselines)
 
 ### CMake, OpenMPI
 Installation of system packages CMake, OpenMPI on Mac 
 ```bash
 brew install cmake openmpi
 ```
-    
+
 ### Activate your envrionment using using conda or Anaconda
 ```bash
 source activate myenv
@@ -31,7 +33,7 @@ pip install gym
     pip install Tensorflow
     ```
     should be sufficient. Refer to [TensorFlow installation guide](https://www.tensorflow.org/install/)
-    for more details. 
+    for more details.
 
 - Install baselines package
     ```bash
@@ -52,33 +54,33 @@ Find your gym package under environment folder, in my computer it is under
 ```bash
 /Users/xiongzhuoran/anaconda3/envs/venv/lib/python3.6/site-packages/gym/
 ```
-- Replece the file 
+- Replece the file
 ```bash
 gym\envs\__init__.py
-``` 
+```
 with file from this repository
 ```bash
-DQN_Stock_Trading/gym/envs/__init__.py 
+DQN_Stock_Trading/gym/envs/__init__.py
 ```
 
 - Add folder in this repository to gym\envs in your computer
 ```bash
-DQN_Stock_Trading/gym/envs/zxstock of this repository 
+DQN_Stock_Trading/gym/envs/zxstock of this repository
 ```
 
-- Open 
+- Open
 ```bash
 gym/envs/zxstock/zxstock_env.py and gym/envs/zxstock/zxstock_testenv.py
 ```
 change the address at line 9 and line 10 into where you want to save the image
 
 ### Baseline
-- Open your baselines folder cloned before, find 
+- Open your baselines folder cloned before, find
 ```bash
 baselines/baselines/run.py
 ```
 
-- Replace it with 
+- Replace it with
 ```bash
 DQN_Stock_Trading/baselines/baselines/run.py in this reposotory
 ```
@@ -110,4 +112,3 @@ pip3 install mujoco-py==0.5.7
 
 #### Please cite the following paper
 Xiong, Z., Liu, X.Y., Zhong, S., Yang, H. and Walid, A., 2018. Practical deep reinforcement learning approach for stock trading, NeurIPS 2018 AI in Finance Workshop.
-
