@@ -91,9 +91,6 @@ Now, you have successfully used the OpenAI baseline PPO algorithm to play the At
 
 ## Step 7: Register the Stock Trading Environment under gym
 
-## Replace files with files in this repository and change file address
-
-### gym
 Find your gym package under environment folder, in my computer (or an EC2 instance) it is under
 ```bash
 /Users/bruceyang/Documents/GitHub/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/
@@ -103,7 +100,7 @@ If this virtual environment doesn't work for you, then you have to install every
 /Users/bruceyang/anaconda3/lib/python3.6/site-packages/gym/
 ```
 
-- Register the RLStock-v0 environment into your venv gym environment:
+Register the RLStock-v0 environment into your venv gym environment:
 Check this file from our repository
 ```bash
 DQN-DDPG_Stock_Trading/gym/envs/__init__.py
