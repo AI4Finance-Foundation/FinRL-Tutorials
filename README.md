@@ -22,7 +22,7 @@ Clone this repo and cd into it:
 git clone https://github.com/hust512/DQN-DDPG_Stock_Trading.git
 cd DQN-DDPG_Stock_Trading
 ```
-Under this folder DDPG_Stock_Trading, create a virtual environment
+Under this folder DQN-DDPG_Stock_Trading, create a virtual environment
 ```bash
 pip install virtualenv
 ```
@@ -153,7 +153,7 @@ python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timestep
 
 If you also want to see the testing/trading result
 ```bash
-python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=1e5 --play
+python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=3e4 --play
 ```
 
 Your result image is in the baseline folder.
