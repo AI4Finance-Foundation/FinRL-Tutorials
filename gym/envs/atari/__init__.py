@@ -1,1 +1,1 @@
-from gym.envs.zxstock import AtariEnv
+from gym.envs.atari.atari_env import AtariEnv

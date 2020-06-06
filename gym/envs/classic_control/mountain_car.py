@@ -4,10 +4,12 @@ permalink: https://perma.cc/6Z2N-PFWC
 """
 
 import math
+
+import numpy as np
+
 import gym
 from gym import spaces
 from gym.utils import seeding
-import numpy as np
 
 class MountainCarEnv(gym.Env):
     metadata = {
@@ -15,11 +17,15 @@ class MountainCarEnv(gym.Env):
         'video.frames_per_second': 30
     }
 
-    def __init__(self):
+    def __init__(self, goal_velocity = 0):
         self.min_position = -1.2
         self.max_position = 0.6
         self.max_speed = 0.07
         self.goal_position = 0.5
+        self.goal_velocity = goal_velocity
+        
+        self.force=0.001
+        self.gravity=0.0025
 
         self.low = np.array([self.min_position, -self.max_speed])
         self.high = np.array([self.max_position, self.max_speed])
@@ -27,10 +33,9 @@ class MountainCarEnv(gym.Env):
         self.viewer = None
 
         self.action_space = spaces.Discrete(3)
-        self.observation_space = spaces.Box(self.low, self.high)
+        self.observation_space = spaces.Box(self.low, self.high, dtype=np.float32)
 
         self.seed()
-        self.reset()
 
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
@@ -40,13 +45,13 @@ class MountainCarEnv(gym.Env):
         assert self.action_space.contains(action), "%r (%s) invalid" % (action, type(action))
 
         position, velocity = self.state
-        velocity += (action-1)*0.001 + math.cos(3*position)*(-0.0025)
+        velocity += (action-1)*self.force + math.cos(3*position)*(-self.gravity)
         velocity = np.clip(velocity, -self.max_speed, self.max_speed)
         position += velocity
         position = np.clip(position, self.min_position, self.max_position)
         if (position==self.min_position and velocity<0): velocity = 0
 
-        done = bool(position >= self.goal_position)
+        done = bool(position >= self.goal_position and velocity >= self.goal_velocity)
         reward = -1.0
 
         self.state = (position, velocity)
@@ -112,7 +117,10 @@ class MountainCarEnv(gym.Env):
         self.cartrans.set_rotation(math.cos(3 * pos))
 
         return self.viewer.render(return_rgb_array = mode=='rgb_array')
-
+    
+    def get_keys_to_action(self):
+        return {():1,(276,):0,(275,):2,(275,276):1} #control with left and right arrow keys 
+    
     def close(self):
         if self.viewer:
             self.viewer.close()

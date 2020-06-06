@@ -120,10 +120,9 @@ into your venv gym environment:
 ```bash
 /DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/__init__.py
 ```
-## Step 8: Create Stock Trading Environment under gym
+## Step 8: Build Stock Trading Environment under gym
 
-
-- Add the folder from our repository to gym\envs in your computer
+- Add the folder from our repository to gym/envs in your computer
 ```bash
 DQN_Stock_Trading/gym/envs/rlstock of our repository
 ```
@@ -132,7 +131,7 @@ DQN_Stock_Trading/gym/envs/rlstock of our repository
 ```bash
 gym/envs/rlstock/rlstock_env.py and gym/envs/rlstock/rlstock_testenv.py
 ```
-change the address at line 9 and line 10 into where you want to save the image
+change the data path which is hardcoded.
 
 ### Baseline
 - Open your baselines folder cloned before, find
@@ -142,27 +141,24 @@ baselines/baselines/run.py
 
 - Replace it with
 ```bash
-DQN_Stock_Trading/baselines/baselines/run.py in this reposotory
+DQN_Stock_Trading/run.py in this reposotory
 ```
 
-## Training model and Testing
+## Step 9: Training model and Testing
+
 If you only want to train the model run this
 ```bash
 python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=1e4
 ```
 
-If you also want to see the testing result
+If you also want to see the testing/trading result
 ```bash
-python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=1e4 --play
+python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=2e5 --play
 ```
-
+You can tune the hyperparameter num_timesteps to better train the model, note that if this number is too high, then you will face an overfitting problem, if it's too low, then you will face an underfitting problem.
 
 
 ### Some Other Commands May Need:
-Tensorflow Update
-```bash
-pip install --upgrade tensorflow==1.11.0
-```
 ```bash
 pip3 install opencv-python
 pip3 install lockfile

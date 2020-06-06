@@ -1,3 +1,4 @@
+import os
 import numpy as np
 
 from gym import utils, error
@@ -18,10 +19,16 @@ def quat_from_angle_and_axis(angle, axis):
     return quat
 
 
-class ManipulateEnv(hand_env.HandEnv, utils.EzPickle):
+# Ensure we get the path separator correct on windows
+MANIPULATE_BLOCK_XML = os.path.join('hand', 'manipulate_block.xml')
+MANIPULATE_EGG_XML = os.path.join('hand', 'manipulate_egg.xml')
+MANIPULATE_PEN_XML = os.path.join('hand', 'manipulate_pen.xml')
+
+
+class ManipulateEnv(hand_env.HandEnv):
     def __init__(
         self, model_path, target_position, target_rotation,
-        target_position_range, reward_type, initial_qpos={},
+        target_position_range, reward_type, initial_qpos=None,
         randomize_initial_position=True, randomize_initial_rotation=True,
         distance_threshold=0.01, rotation_threshold=0.1, n_substeps=20, relative_control=False,
         ignore_z_target_rotation=False,
@@ -64,11 +71,12 @@ class ManipulateEnv(hand_env.HandEnv, utils.EzPickle):
 
         assert self.target_position in ['ignore', 'fixed', 'random']
         assert self.target_rotation in ['ignore', 'fixed', 'xyz', 'z', 'parallel']
+        initial_qpos = initial_qpos or {}
 
         hand_env.HandEnv.__init__(
             self, model_path, n_substeps=n_substeps, initial_qpos=initial_qpos,
             relative_control=relative_control)
-        utils.EzPickle.__init__(self)
+
 
     def _get_achieved_goal(self):
         # Object position and rotation.
@@ -264,28 +272,31 @@ class ManipulateEnv(hand_env.HandEnv, utils.EzPickle):
         }
 
 
-class HandBlockEnv(ManipulateEnv):
+class HandBlockEnv(ManipulateEnv, utils.EzPickle):
     def __init__(self, target_position='random', target_rotation='xyz', reward_type='sparse'):
-        super(HandBlockEnv, self).__init__(
-            model_path='hand/manipulate_block.xml', target_position=target_position,
+        utils.EzPickle.__init__(self, target_position, target_rotation, reward_type)
+        ManipulateEnv.__init__(self,
+            model_path=MANIPULATE_BLOCK_XML, target_position=target_position,
             target_rotation=target_rotation,
             target_position_range=np.array([(-0.04, 0.04), (-0.06, 0.02), (0.0, 0.06)]),
             reward_type=reward_type)
 
 
-class HandEggEnv(ManipulateEnv):
+class HandEggEnv(ManipulateEnv, utils.EzPickle):
     def __init__(self, target_position='random', target_rotation='xyz', reward_type='sparse'):
-        super(HandEggEnv, self).__init__(
-            model_path='hand/manipulate_egg.xml', target_position=target_position,
+        utils.EzPickle.__init__(self, target_position, target_rotation, reward_type)
+        ManipulateEnv.__init__(self,
+            model_path=MANIPULATE_EGG_XML, target_position=target_position,
             target_rotation=target_rotation,
             target_position_range=np.array([(-0.04, 0.04), (-0.06, 0.02), (0.0, 0.06)]),
             reward_type=reward_type)
 
 
-class HandPenEnv(ManipulateEnv):
+class HandPenEnv(ManipulateEnv, utils.EzPickle):
     def __init__(self, target_position='random', target_rotation='xyz', reward_type='sparse'):
-        super(HandPenEnv, self).__init__(
-            model_path='hand/manipulate_pen.xml', target_position=target_position,
+        utils.EzPickle.__init__(self, target_position, target_rotation, reward_type)
+        ManipulateEnv.__init__(self,
+            model_path=MANIPULATE_PEN_XML, target_position=target_position,
             target_rotation=target_rotation,
             target_position_range=np.array([(-0.04, 0.04), (-0.06, 0.02), (0.0, 0.06)]),
             randomize_initial_rotation=False, reward_type=reward_type,

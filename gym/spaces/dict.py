@@ -1,7 +1,8 @@
-import gym
 from collections import OrderedDict
+from .space import Space
 
-class Dict(gym.Space):
+
+class Dict(Space):
     """
     A dictionary of simpler spaces.
 
@@ -19,7 +20,7 @@ class Dict(gym.Space):
             )),
             'rear_cam': spaces.Box(low=0, high=1, shape=(10, 10, 3)),
         }),
-        'ext_controller': spaces.MultiDiscrete([ [0,4], [0,1], [0,1] ]),
+        'ext_controller': spaces.MultiDiscrete((5, 2, 2)),
         'inner_state':spaces.Dict({
             'charge': spaces.Discrete(100),
             'system_checks': spaces.MultiBinary(10),
@@ -30,13 +31,21 @@ class Dict(gym.Space):
         })
     })
     """
-    def __init__(self, spaces):
+    def __init__(self, spaces=None, **spaces_kwargs):
+        assert (spaces is None) or (not spaces_kwargs), 'Use either Dict(spaces=dict(...)) or Dict(foo=x, bar=z)'
+        if spaces is None:
+            spaces = spaces_kwargs
         if isinstance(spaces, dict) and not isinstance(spaces, OrderedDict):
             spaces = OrderedDict(sorted(list(spaces.items())))
         if isinstance(spaces, list):
             spaces = OrderedDict(spaces)
         self.spaces = spaces
-        gym.Space.__init__(self, None, None) # None for shape and dtype, since it'll require special handling
+        for space in spaces.values():
+            assert isinstance(space, Space), 'Values of the dict should be instances of gym.Space'
+        super(Dict, self).__init__(None, None) # None for shape and dtype, since it'll require special handling
+
+    def seed(self, seed=None):
+        [space.seed(seed) for space in self.spaces.values()]
 
     def sample(self):
         return OrderedDict([(k, space.sample()) for k, space in self.spaces.items()])
@@ -51,8 +60,11 @@ class Dict(gym.Space):
                 return False
         return True
 
+    def __getitem__(self, key):
+        return self.spaces[key]
+
     def __repr__(self):
-        return "Dict(" + ", ". join([k + ":" + str(s) for k, s in self.spaces.items()]) + ")"
+        return "Dict(" + ", ". join([str(k) + ":" + str(s) for k, s in self.spaces.items()]) + ")"
 
     def to_jsonable(self, sample_n):
         # serialize as dict-repr of vectors
@@ -72,4 +84,4 @@ class Dict(gym.Space):
         return ret
 
     def __eq__(self, other):
-        return self.spaces == other.spaces
+        return isinstance(other, Dict) and self.spaces == other.spaces

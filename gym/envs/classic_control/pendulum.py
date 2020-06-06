@@ -10,10 +10,13 @@ class PendulumEnv(gym.Env):
         'video.frames_per_second' : 30
     }
 
-    def __init__(self):
+    def __init__(self, g=10.0):
         self.max_speed=8
         self.max_torque=2.
         self.dt=.05
+        self.g = g
+        self.m = 1.
+        self.l = 1.
         self.viewer = None
 
         high = np.array([1., 1., self.max_speed])
@@ -29,9 +32,9 @@ class PendulumEnv(gym.Env):
     def step(self,u):
         th, thdot = self.state # th := theta
 
-        g = 10.
-        m = 1.
-        l = 1.
+        g = self.g
+        m = self.m
+        l = self.l
         dt = self.dt
 
         u = np.clip(u, -self.max_torque, self.max_torque)[0]
