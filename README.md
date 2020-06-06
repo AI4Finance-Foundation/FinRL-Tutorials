@@ -111,6 +111,10 @@ register(
     id='RLStock-v0',
     entry_point='gym.envs.rlstock:StockEnv',
 )
+register(
+    id='RLTestStock-v0',
+    entry_point='gym.envs.rlstock:StockTestEnv',
+)
 ```
 into your venv gym environment:
 ```bash
@@ -126,7 +130,7 @@ DQN_Stock_Trading/gym/envs/rlstock of our repository
 
 - Open
 ```bash
-gym/envs/zxstock/zxstock_env.py and gym/envs/zxstock/zxstock_testenv.py
+gym/envs/rlstock/rlstock_env.py and gym/envs/rlstock/rlstock_testenv.py
 ```
 change the address at line 9 and line 10 into where you want to save the image
 
