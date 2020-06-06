@@ -17,11 +17,11 @@ brew install cmake openmpi
 
 
 ## Step 2: Create and Activate Virtual Environment
-- Clone this repo and cd into it:
-    ```bash
-    git clone https://github.com/hust512/DQN-DDPG_Stock_Trading.git
-    cd DQN-DDPG_Stock_Trading
-    ```
+Clone this repo and cd into it:
+```bash
+git clone https://github.com/hust512/DQN-DDPG_Stock_Trading.git
+cd DQN-DDPG_Stock_Trading
+```
 Under this folder DDPG_Stock_Trading, create a virtual environment
 ```bash
 pip install virtualenv
