@@ -116,10 +116,12 @@ into your venv gym environment:
 ```bash
 /DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/__init__.py
 ```
+## Step 8: Create Stock Trading Environment under gym
 
-- Add folder in this repository to gym\envs in your computer
+
+- Add the folder from our repository to gym\envs in your computer
 ```bash
-DQN_Stock_Trading/gym/envs/zxstock of this repository
+DQN_Stock_Trading/gym/envs/rlstock of our repository
 ```
 
 - Open
