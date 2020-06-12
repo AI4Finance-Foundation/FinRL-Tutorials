@@ -77,7 +77,7 @@ pytest
 ```
 All unit tests have to get passed, in the end you will see something like: 94 passed, 49 skipped, 72 warnings in 355.29s. If there are any errors or failed tests, you have to debug it, check the openai baselines [Issues](https://github.com/openai/baselines/issues) or stackoverflow to make sure all unit tests passed in the end.
 
-Some failed tests will not affect our stock trading application, you can proceed to see if it runs or not.
+Some failed tests will not affect our stock trading application (for example, a ssl verification error we had), you can proceed to see if it runs or not.
 
 ## Step 6: Test-run OpenAI Atari Pong game
 ### If this works for you then you are ready to implement the stock trading application
