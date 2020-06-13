@@ -17,17 +17,17 @@ brew install cmake openmpi
 
 
 ## Step 2: Create and Activate Virtual Environment
-Clone this repo and cd into it:
+Clone the repository to folder /DQN-DDPG_Stock_Trading:
 ```bash
 git clone https://github.com/hust512/DQN-DDPG_Stock_Trading.git
 cd DQN-DDPG_Stock_Trading
 ```
-Under this folder DQN-DDPG_Stock_Trading, create a virtual environment
+Under folder /DQN-DDPG_Stock_Trading, create a virtual environment
 ```bash
 pip install virtualenv
 ```
 Virtualenvs are essentially folders that have copies of python executable and all python packages.
-To create a virtualenv called venv with python3, one runs
+Create a virtualenv called venv under folder /DQN-DDPG_Stock_Trading/venv
 ```bash
 virtualenv -p python3 venv
 ```
@@ -35,11 +35,6 @@ To activate a virtualenv:
 ```
 source venv/bin/activate
 ```
-The terminate bash will become something like this:
-```
-(venv) bruceyang-MBP:DQN-DDPG_Stock_Trading bruce$
-```
-There will be a folder named venv under DQN-DDPG_Stock_Trading
 
 ## Step 3: Install openAI gym environment under this virtual environment: venv
 #### Tensorflow versions
@@ -58,7 +53,7 @@ for more details.
     pip install pandas
     ```
 ## Step 4: Download and Install Official Baseline Package
-- Clone the repo and cd into it:
+- Clone the baseline repository to folder DQN-DDPG_Stock_Trading/baselines:
     ```bash
     git clone https://github.com/openai/baselines.git
     cd baselines
@@ -70,44 +65,28 @@ for more details.
     ```
 
 ## Step 5: Testing the installation
-All unit tests in baselines can be run using pytest runner:
+Run all unit tests in baselines:
 ```
 pip install pytest
 pytest
 ```
-All unit tests have to get passed, in the end this will show: 94 passed, 49 skipped, 72 warnings in 355.29s. If there are any errors or failed tests, just debug it, check the openai baselines [Issues](https://github.com/openai/baselines/issues) or stackoverflow to make sure all unit tests passed in the end.
+A result like '94 passed, 49 skipped, 72 warnings in 355.29s' is expected. Check the OpenAI baselines [Issues](https://github.com/openai/baselines/issues) or stackoverflow if fixes on failed tests are needed.
 
-Some failed tests will not affect the stock trading application (for example, a ssl verification error), just proceed to see if it runs or not.
-
-## Step 6: Test-run OpenAI Atari Pong game
+## Step 6: Test OpenAI Atari Pong game
 ### If this works then it's ready to implement the stock trading application
-Set num_timesteps to 1e4 for test-run purpose
-```bash
-python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=1e4 --save_path=~/models/pong_20M_ppo2
-```
-This should get to the mean reward per episode about 20. To load and visualize the model, we'll do the following - load the model, train it for 0 steps, and then visualize:
 ```bash
 python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=0 --load_path=~/models/pong_20M_ppo2 --play
 ```
-Now, using the OpenAI baseline PPO algorithm to play the Atari Pong game is done.
+A mean reward per episode around 20 is expected.
 
 ## Step 7: Register Stock Trading Environment under gym
 
-Find the python gym package under the virtual environment folder, in the local computer (or an EC2 instance) it is under
-```bash
-/Users/bruceyang/Documents/GitHub/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/
-```
-If the virtual environment doesn't work, then just install everything into the local computer, then the gym package will be installed under anaconda3:
-```bash
-/Users/bruceyang/anaconda3/lib/python3.6/site-packages/gym/
-```
-
-Register the RLStock-v0 environment into the venv gym environment:
-Check this file from this repository
+Register the RLStock-v0 environment in folder /DQN-DDPG_Stock_Trading/venv:
+From
 ```bash
 DQN-DDPG_Stock_Trading/gym/envs/__init__.py
 ```
-Copy this part:
+Copy following:
 ```bash
 register(
     id='RLStock-v0',
@@ -124,7 +103,7 @@ into the venv gym environment:
 ```
 ## Step 8: Build Stock Trading Environment under gym
 
-- Add the folder from this repository 
+- Copy folder
 ```bash
 DQN_Stock_Trading/gym/envs/rlstock
 ```
@@ -140,14 +119,13 @@ into the venv gym environment folder:
 ```
 change the import data path in these two files.
 ### Baseline
-- Open the baselines folder cloned before, find
+Replace 
 ```bash
 /DQN-DDPG_Stock_Trading/baselines/baselines/run.py
 ```
-
-- Replace it with
+with
 ```bash
-/DQN-DDPG_Stock_Trading/run.py in this reposotory
+/DQN-DDPG_Stock_Trading/run.py
 ```
 
 ## Step 9: Training model and Testing
@@ -162,14 +140,13 @@ To see the testing/trading result, run this
 python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=2e4 --play
 ```
 
-The result images are under the baseline folder.
+The result images are under folder /DQN-DDPG_Stock_Trading/baselines.
 
 (You can tune the hyperparameter num_timesteps to better train the model, note that if this number is too high, then you will face an overfitting problem, if it's too low, then you will face an underfitting problem.)
 
 Compare to our result:
 
 <img src=result_trading.png width="500">
-
 
 
 ### Some Other Commands May Need:
