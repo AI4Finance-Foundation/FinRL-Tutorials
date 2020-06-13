@@ -35,7 +35,7 @@ To activate a virtualenv:
 ```
 source venv/bin/activate
 ```
-Your terminate bash will become something like this:
+The terminate bash will become something like this:
 ```
 (venv) bruceyang-MBP:DQN-DDPG_Stock_Trading bruce$
 ```
@@ -75,12 +75,12 @@ All unit tests in baselines can be run using pytest runner:
 pip install pytest
 pytest
 ```
-All unit tests have to get passed, in the end you will see something like: 94 passed, 49 skipped, 72 warnings in 355.29s. If there are any errors or failed tests, you have to debug it, check the openai baselines [Issues](https://github.com/openai/baselines/issues) or stackoverflow to make sure all unit tests passed in the end.
+All unit tests have to get passed, in the end this will show: 94 passed, 49 skipped, 72 warnings in 355.29s. If there are any errors or failed tests, just debug it, check the openai baselines [Issues](https://github.com/openai/baselines/issues) or stackoverflow to make sure all unit tests passed in the end.
 
-Some failed tests will not affect our stock trading application (for example, a ssl verification error we had), you can proceed to see if it runs or not.
+Some failed tests will not affect the stock trading application (for example, a ssl verification error), just proceed to see if it runs or not.
 
 ## Step 6: Test-run OpenAI Atari Pong game
-### If this works for you then you are ready to implement the stock trading application
+### If this works then it's ready to implement the stock trading application
 Set num_timesteps to 1e4 for test-run purpose
 ```bash
 python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=1e4 --save_path=~/models/pong_20M_ppo2
@@ -89,21 +89,21 @@ This should get to the mean reward per episode about 20. To load and visualize t
 ```bash
 python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=0 --load_path=~/models/pong_20M_ppo2 --play
 ```
-Now, you have successfully used the OpenAI baseline PPO algorithm to play the Atari Pong game.
+Now, using the OpenAI baseline PPO algorithm to play the Atari Pong game is done.
 
 ## Step 7: Register Stock Trading Environment under gym
 
-Find your gym package under environment folder, in my computer (or an EC2 instance) it is under
+Find your gym package under environment folder, in the local computer (or an EC2 instance) it is under
 ```bash
 /Users/bruceyang/Documents/GitHub/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/
 ```
-If the virtual environment doesn't work for you, then you have to install everything into your local, then the gym package will be installed under anaconda3:
+If the virtual environment doesn't work, then just install everything into the local computer, then the gym package will be installed under anaconda3:
 ```bash
 /Users/bruceyang/anaconda3/lib/python3.6/site-packages/gym/
 ```
 
-Register the RLStock-v0 environment into your venv gym environment:
-Check this file from our repository
+Register the RLStock-v0 environment into the venv gym environment:
+Check this file from this repository
 ```bash
 DQN-DDPG_Stock_Trading/gym/envs/__init__.py
 ```
@@ -118,17 +118,17 @@ register(
     entry_point='gym.envs.rlstock:StockTestEnv',
 )
 ```
-into your venv gym environment:
+into the venv gym environment:
 ```bash
 /DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/__init__.py
 ```
 ## Step 8: Build Stock Trading Environment under gym
 
-- Add the folder from our repository 
+- Add the folder from this repository 
 ```bash
 DQN_Stock_Trading/gym/envs/rlstock of our repository
 ```
-into your venv gym environment folder:
+into the venv gym environment folder:
 ```bash
 /DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs
 ```
@@ -141,7 +141,7 @@ into your venv gym environment folder:
 change the data path which is hardcoded.
 
 ### Baseline
-- Open your baselines folder cloned before, find
+- Open the baselines folder cloned before, find
 ```bash
 /DQN-DDPG_Stock_Trading/baselines/baselines/run.py
 ```
@@ -153,19 +153,19 @@ change the data path which is hardcoded.
 
 ## Step 9: Training model and Testing
 
-If you only want to train the model run this
+To train the model, run this
 ```bash
 python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=1e4
 ```
 
-If you also want to see the testing/trading result
+To see the testing/trading result, run this
 ```bash
 python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=2e4 --play
 ```
 
-Your result image is in the baseline folder.
+The result images are under the baseline folder.
 
-You can tune the hyperparameter num_timesteps to better train the model, note that if this number is too high, then you will face an overfitting problem, if it's too low, then you will face an underfitting problem.
+(You can tune the hyperparameter num_timesteps to better train the model, note that if this number is too high, then you will face an overfitting problem, if it's too low, then you will face an underfitting problem.)
 
 Compare to our result:
 
