@@ -135,7 +135,8 @@ into your venv gym environment folder:
 
 - Open
 ```bash
-gym/envs/rlstock/rlstock_env.py and gym/envs/rlstock/rlstock_testenv.py
+/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/rlstock/rlstock_env.py and 
+/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/rlstock/rlstock_testenv.py
 ```
 change the data path which is hardcoded.
 
