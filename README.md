@@ -143,12 +143,12 @@ change the data path which is hardcoded.
 ### Baseline
 - Open your baselines folder cloned before, find
 ```bash
-baselines/baselines/run.py
+/DQN-DDPG_Stock_Trading/baselines/baselines/run.py
 ```
 
 - Replace it with
 ```bash
-DQN_Stock_Trading/run.py in this reposotory
+/DQN-DDPG_Stock_Trading/run.py in this reposotory
 ```
 
 ## Step 9: Training model and Testing
