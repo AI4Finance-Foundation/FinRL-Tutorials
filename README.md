@@ -126,7 +126,7 @@ into the venv gym environment:
 
 - Add the folder from this repository 
 ```bash
-DQN_Stock_Trading/gym/envs/rlstock of our repository
+DQN_Stock_Trading/gym/envs/rlstock
 ```
 into the venv gym environment folder:
 ```bash
