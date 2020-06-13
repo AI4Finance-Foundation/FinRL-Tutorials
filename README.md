@@ -124,9 +124,13 @@ into your venv gym environment:
 ```
 ## Step 8: Build Stock Trading Environment under gym
 
-- Add the folder from our repository to gym/envs in your computer
+- Add the folder from our repository 
 ```bash
 DQN_Stock_Trading/gym/envs/rlstock of our repository
+```
+into your venv gym environment folder:
+```bash
+/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs
 ```
 
 - Open
