@@ -93,7 +93,7 @@ Now, using the OpenAI baseline PPO algorithm to play the Atari Pong game is done
 
 ## Step 7: Register Stock Trading Environment under gym
 
-Find your gym package under environment folder, in the local computer (or an EC2 instance) it is under
+Find the python gym package under environment folder, in the local computer (or an EC2 instance) it is under
 ```bash
 /Users/bruceyang/Documents/GitHub/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/
 ```
