@@ -117,7 +117,7 @@ into the venv gym environment folder:
 /DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/rlstock/rlstock_env.py 
 /DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/rlstock/rlstock_testenv.py
 ```
-change the import data path in these two files.
+change the import data path in these two files (cd into the rlstock folder and pwd to check the folder path).
 ### Baseline
 Replace 
 ```bash
