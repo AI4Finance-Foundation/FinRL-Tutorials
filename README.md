@@ -129,16 +129,26 @@ with
 ```
 
 ## Step 9: Training model and Testing
-cd into the baseline folder with virtual environment venv:
+
+### Pre-steps:
+Go to folder 
+```
+/DQN-DDPG_Stock_Trading/
+```
+Activate the virtual environment 
+```
+source venv/bin/activate
+```
+Go to the baseline folder
 ```
 /DQN-DDPG_Stock_Trading/baselines
 ```
-
+### Train
 To train the model, run this
 ```bash
 python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=1e4
 ```
-
+### Trade
 To see the testing/trading result, run this
 ```bash
 python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=2e4 --play
