@@ -129,6 +129,10 @@ with
 ```
 
 ## Step 9: Training model and Testing
+cd into the baseline folder with virtual environment venv:
+```
+/DQN-DDPG_Stock_Trading/baselines
+```
 
 To train the model, run this
 ```bash
