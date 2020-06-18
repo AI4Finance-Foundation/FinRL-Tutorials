@@ -75,7 +75,7 @@ A result like '94 passed, 49 skipped, 72 warnings in 355.29s' is expected. Check
 ## Step 6: Test OpenAI Atari Pong game
 ### If this works then it's ready to implement the stock trading application
 ```bash
-python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=0 --load_path=~/models/pong_20M_ppo2 --play
+python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=1e4 --load_path=~/models/pong_20M_ppo2 --play
 ```
 A mean reward per episode around 20 is expected.
 
