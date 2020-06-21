@@ -2,7 +2,7 @@
 
 
 ## Prerequisites
-Python 3.6 envrionment
+Python 3.6+ envrionment
 
 ## Step 1: Install OpenAI Baselines System Packages [OpenAI Instruction](https://github.com/openai/baselines)
 ### Ubuntu
