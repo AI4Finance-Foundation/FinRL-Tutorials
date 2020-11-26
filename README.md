@@ -1,7 +1,7 @@
 # Practical Deep Reinforcement Learning Approach for Stock Trading
 
-## FinRL library
-The codes here are incooperated into the [FinRL library](https://github.com/AI4Finance-LLC/FinRL-Library)
+## Please check the FinRL library
+Now, this project is merged into the [FinRL library](https://github.com/AI4Finance-LLC/FinRL-Library)
 
 ## Prerequisites
 Python 3.6+ envrionment
