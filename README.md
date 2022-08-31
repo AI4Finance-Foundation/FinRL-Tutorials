@@ -1,177 +1,27 @@
-# Practical Deep Reinforcement Learning Approach for Stock Trading
+<div align="center">
+<img align="center" src=https://github.com/AI4Finance-Foundation/FinRL/blob/master/figs/FinRL_Tutorials.png>
+</div>
 
-## Please check the FinRL library
-Now, this project is merged into the [FinRL library](https://github.com/AI4Finance-LLC/FinRL-Library)
+**Mission**: provide user-friendly demos using notebooks.
 
-## Prerequisites
-Python 3.6+ envrionment
+Note that we are merging the tutorials from [FinRL-meta](https://github.com/AI4Finance-Foundation/FinRL-Meta/tree/master/tutorials).
 
-## Step 1: Install OpenAI Baselines System Packages [OpenAI Instruction](https://github.com/openai/baselines)
-### Ubuntu
-```bash
-sudo apt-get update && sudo apt-get install cmake libopenmpi-dev python3-dev zlib1g-dev
-```
-### Mac OS X
-Installation of system packages on Mac requires [Homebrew](https://brew.sh). With Homebrew installed, run the following:
-```bash
-brew install cmake openmpi
-```
+## File Structure
 
+### **1-Introduction**		# notebooks for beginners, introduce FinRL step-by-step
++ **FinRL_StockTrading_NeurIPS_2018:** the very first tutorial notebook to show beginners how to use FinRL to trade Dow 30 using 5 DRL algorithms.
++ **FinRL_PortfolioAllocation_NeurIPS_2020:** the notebook with basic settings to do portfolio allocation on Dow 30.
++ **FinRL_StockTrading_Fundamental:** the notebook to merge fundamental indicators in earnings report such as 'ROA', 'ROE', 'PE' with technical indicators.
 
-## Step 2: Create and Activate Virtual Environment
-Clone the repository to folder /DQN-DDPG_Stock_Trading:
-```bash
-git clone https://github.com/hust512/DQN-DDPG_Stock_Trading.git
-cd DQN-DDPG_Stock_Trading
-```
-Under folder /DQN-DDPG_Stock_Trading, create a virtual environment
-```bash
-pip install virtualenv
-```
-Virtualenvs are essentially folders that have copies of python executable and all python packages.
-Create a virtualenv called venv under folder /DQN-DDPG_Stock_Trading/venv
-```bash
-virtualenv -p python3 venv
-```
-To activate a virtualenv:
-```
-source venv/bin/activate
-```
+### **2-Advance**  	# notebooks for intermediate users to learn more about FinRL
++ **FinRL_PortfolioAllocation_Explainable_DRL:** this notebook uses an empirical approach to explain the strategies of DRL agents for the portfolio management task. 1) it uses feature weights of a trained DRL agent, 2) histogram of correlation coefficient, 3) Z-statistics to explain the strategies.
++ **FinRL_Compare_ElegantRL_RLlib_Stablebaseline3:** this notebook compare the most popular DRL libraries namely ElegantRL, RLlib and Stablebaseline in FinRL to do trading.
++ **FinRL_Ensemble_StockTrading_ICAIF_2020:** this notebook uses an ensemble strategy to combine multiple DRL agents to form an adaptive one to improve the robustness.
 
-## Step 3: Install openAI gym environment under this virtual environment: venv
-#### Tensorflow versions
-The master branch supports Tensorflow from version 1.4 to 1.14. For Tensorflow 2.0 support, please use tf2 branch. Refer to [TensorFlow installation guide](https://www.tensorflow.org/install/)
-for more details.
-- Install gym and tensorflow packages:
-    ```bash
-    pip install gym
-    pip install gym[atari] 
-    pip install tensorflow==1.14
-    ```
-- Other packages that might be missing:
-    ```bash
-    pip install filelock
-    pip install matplotlib
-    pip install pandas
-    ```
-## Step 4: Download and Install Official Baseline Package
-- Clone the baseline repository to folder DQN-DDPG_Stock_Trading/baselines:
-    ```bash
-    git clone https://github.com/openai/baselines.git
-    cd baselines
-    ```
+### **3-Practical**  	# notebooks for users to explore paper trading and more financial markets
++ **FinRL_PaperTrading_Demo:** the notebook to show paper trading using FinRL step-by-step through Alpaca.
++ **FinRL_MultiCrypto_Trading:** example of top 10 market cap cryptocurrencies trading using FinRL.
++ **FinRL_China_A_Share_Market:** example of China A Share market trading using FinRL.
 
-- Install baselines package
-    ```bash
-    pip install -e .
-    ```
-
-## Step 5: Testing the installation
-Run all unit tests in baselines:
-```
-pip install pytest
-pytest
-```
-A result like '94 passed, 49 skipped, 72 warnings in 355.29s' is expected. Check the OpenAI baselines [Issues](https://github.com/openai/baselines/issues) or stackoverflow if fixes on failed tests are needed.
-
-## Step 6: Test OpenAI Atari Pong game
-### If this works then it's ready to implement the stock trading application
-```bash
-python -m baselines.run --alg=ppo2 --env=PongNoFrameskip-v4 --num_timesteps=1e4 --load_path=~/models/pong_20M_ppo2 --play
-```
-A mean reward per episode around 20 is expected.
-
-## Step 7: Register Stock Trading Environment under gym
-
-Register the RLStock-v0 environment in folder /DQN-DDPG_Stock_Trading/venv:
-From
-```bash
-DQN-DDPG_Stock_Trading/gym/envs/__init__.py
-```
-Copy following:
-```bash
-register(
-    id='RLStock-v0',
-    entry_point='gym.envs.rlstock:StockEnv',
-)
-register(
-    id='RLTestStock-v0',
-    entry_point='gym.envs.rlstock:StockTestEnv',
-)
-```
-into the venv gym environment:
-```bash
-/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/__init__.py
-```
-## Step 8: Build Stock Trading Environment under gym
-
-- Copy folder
-```bash
-DQN_Stock_Trading/gym/envs/rlstock
-```
-into the venv gym environment folder:
-```bash
-/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs
-```
-
-- Open
-```bash
-/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/rlstock/rlstock_env.py 
-/DQN-DDPG_Stock_Trading/venv/lib/python3.6/site-packages/gym/envs/rlstock/rlstock_testenv.py
-```
-change the import data path in these two files (cd into the rlstock folder and pwd to check the folder path).
-### Baseline
-Replace 
-```bash
-/DQN-DDPG_Stock_Trading/baselines/baselines/run.py
-```
-with
-```bash
-/DQN-DDPG_Stock_Trading/run.py
-```
-
-## Step 9: Training model and Testing
-
-### Pre-steps:
-Go to folder 
-```
-/DQN-DDPG_Stock_Trading/
-```
-Activate the virtual environment 
-```
-source venv/bin/activate
-```
-Go to the baseline folder
-```
-/DQN-DDPG_Stock_Trading/baselines
-```
-### Train
-To train the model, run this
-```bash
-python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=1e4
-```
-### Trade
-To see the testing/trading result, run this
-```bash
-python -m baselines.run --alg=ddpg --env=RLStock-v0 --network=mlp --num_timesteps=2e4 --play
-```
-
-The result images are under folder /DQN-DDPG_Stock_Trading/baselines.
-
-(You can tune the hyperparameter num_timesteps to better train the model, note that if this number is too high, then you will face an overfitting problem, if it's too low, then you will face an underfitting problem.)
-
-Compare to our result:
-
-<img src=result_trading.png width="500">
-
-
-### Some Other Commands May Need:
-```bash
-pip3 install opencv-python
-pip3 install lockfile
-pip3 install -U numpy
-pip3 install mujoco-py==0.5.7
-```
-
-#### Please cite the following paper
-Xiong, Z., Liu, X.Y., Zhong, S., Yang, H. and Walid, A., 2018. Practical deep reinforcement learning approach for stock trading, NeurIPS 2018 AI in Finance Workshop.
+### **4-Optimization** # notebooks for users interested in hyperparameter optimizations
+### **5-Others** other notebooks
