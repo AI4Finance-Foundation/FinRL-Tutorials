@@ -4,7 +4,7 @@
 
 **Mission**: provide user-friendly demos using notebooks.
 
-Note that we are merging the tutorials from [FinRL-meta](https://github.com/AI4Finance-Foundation/FinRL-Meta/tree/master/tutorials) and [FinRL] (https://github.com/AI4Finance-Foundation/FinRL/tree/master/tutorials).
+Note that we are merging the tutorials from [FinRL-meta](https://github.com/AI4Finance-Foundation/FinRL-Meta/tree/master/tutorials) and [FinRL](https://github.com/AI4Finance-Foundation/FinRL/tree/master/tutorials).
 
 
 ## File Structure
