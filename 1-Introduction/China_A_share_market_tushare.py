@@ -109,14 +109,12 @@ p = DataProcessor(
 
 # download and clean
 p.download_data(ticker_list=ticker_list)
-
-
 p.clean_data()
-
+p.fillna()
 
 # add_technical_indicator
 p.add_technical_indicator(config.INDICATORS)
-p.clean_data()
+p.fillna()
 print(f"p.dataframe: {p.dataframe}")
 
 
