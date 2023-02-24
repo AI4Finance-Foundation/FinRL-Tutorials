@@ -934,8 +934,7 @@ def main():
     stats = backtest_stats(baseline_df, value_col_name='close')
 
     print("==============Compare to DJIA===========")
-    % matplotlib
-    inline
+
     # S&P 500: ^GSPC
     # Dow Jones Index: ^DJI
     # NASDAQ 100: ^NDX
@@ -970,6 +969,7 @@ def main():
                       baseline_start=TEST_START_DATE,
                       baseline_end=TEST_END_DATE)
 
-
+if __name__ == '__main__':
+    main()
 
 
