@@ -149,3 +149,15 @@ def main():
 
     stats = backtest_stats(baseline_df, value_col_name='close')
 
+    print("==============Compare to DJIA===========")
+
+    # S&P 500: ^GSPC
+    # Dow Jones Index: ^DJI
+    # NASDAQ 100: ^NDX
+    backtest_plot(df_account_value,
+                  baseline_ticker='^DJI',
+                  baseline_start=df_account_value.loc[0, 'date'],
+                  baseline_end=df_account_value.loc[len(df_account_value) - 1, 'date'])
+
+
+
