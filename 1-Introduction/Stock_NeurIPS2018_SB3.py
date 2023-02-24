@@ -406,8 +406,8 @@ def main():
     result.columns = ['a2c', 'ddpg', 'td3', 'ppo', 'sac', 'mean var']
 
     plt.rcParams["figure.figsize"] = (15, 5)
-    plt.figure();
-    result.plot();
+    plt.figure()
+    result.plot()
 
 
 if __name__ == '__main__':
