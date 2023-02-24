@@ -767,4 +767,209 @@ def main():
     # Establish the training environment using StockTradingEnv() class
     e_train_gym = StockTradingEnv(df=train_data, **env_kwargs)
 
+    env_train, _ = e_train_gym.get_sb_env()
+    print(type(env_train))
+
+    # Set up the agent using DRLAgent() class using the environment created in the previous part
+    agent = DRLAgent(env=env_train)
+
+    if_using_a2c = False
+    if_using_ddpg = False
+    if_using_ppo = False
+    if_using_td3 = False
+    if_using_sac = True
+
+    agent = DRLAgent(env=env_train)
+    PPO_PARAMS = {
+        "n_steps": 2048,
+        "ent_coef": 0.01,
+        "learning_rate": 0.00025,
+        "batch_size": 128,
+    }
+    model_ppo = agent.get_model("ppo", model_kwargs=PPO_PARAMS)
+
+    if if_using_ppo:
+        # set up logger
+        tmp_path = RESULTS_DIR + '/ppo'
+        new_logger_ppo = configure(tmp_path, ["stdout", "csv", "tensorboard"])
+        # Set new logger
+        model_ppo.set_logger(new_logger_ppo)
+
+    trained_ppo = agent.train_model(model=model_ppo,
+                                    tb_log_name='ppo',
+                                    total_timesteps=50000) if if_using_ppo else None
+
+    agent = DRLAgent(env=env_train)
+    model_ddpg = agent.get_model("ddpg")
+
+    if if_using_ddpg:
+        # set up logger
+        tmp_path = RESULTS_DIR + '/ddpg'
+        new_logger_ddpg = configure(tmp_path, ["stdout", "csv", "tensorboard"])
+        # Set new logger
+        model_ddpg.set_logger(new_logger_ddpg)
+
+    trained_ddpg = agent.train_model(model=model_ddpg,
+                                     tb_log_name='ddpg',
+                                     total_timesteps=50000) if if_using_ddpg else None
+
+    agent = DRLAgent(env=env_train)
+    model_a2c = agent.get_model("a2c")
+
+    if if_using_a2c:
+        # set up logger
+        tmp_path = RESULTS_DIR + '/a2c'
+        new_logger_a2c = configure(tmp_path, ["stdout", "csv", "tensorboard"])
+        # Set new logger
+        model_a2c.set_logger(new_logger_a2c)
+
+    trained_a2c = agent.train_model(model=model_a2c,
+                                    tb_log_name='a2c',
+                                    total_timesteps=50000) if if_using_a2c else None
+
+    agent = DRLAgent(env=env_train)
+    TD3_PARAMS = {"batch_size": 100,
+                  "buffer_size": 1000000,
+                  "learning_rate": 0.001}
+
+    model_td3 = agent.get_model("td3", model_kwargs=TD3_PARAMS)
+
+    if if_using_td3:
+        # set up logger
+        tmp_path = RESULTS_DIR + '/td3'
+        new_logger_td3 = configure(tmp_path, ["stdout", "csv", "tensorboard"])
+        # Set new logger
+        model_td3.set_logger(new_logger_td3)
+
+    trained_td3 = agent.train_model(model=model_td3,
+                                    tb_log_name='td3',
+                                    total_timesteps=30000) if if_using_td3 else None
+
+    agent = DRLAgent(env=env_train)
+    SAC_PARAMS = {
+        "batch_size": 128,
+        "buffer_size": 1000000,
+        "learning_rate": 0.0001,
+        "learning_starts": 100,
+        "ent_coef": "auto_0.1",
+    }
+
+    model_sac = agent.get_model("sac", model_kwargs=SAC_PARAMS)
+
+    if if_using_sac:
+        # set up logger
+        tmp_path = RESULTS_DIR + '/sac'
+        new_logger_sac = configure(tmp_path, ["stdout", "csv", "tensorboard"])
+        # Set new logger
+        model_sac.set_logger(new_logger_sac)
+
+    trained_sac = agent.train_model(model=model_sac,
+                                    tb_log_name='sac',
+                                    total_timesteps=30000) if if_using_sac else None
+
+    trade_data = data_split(processed_full, TEST_START_DATE, TEST_END_DATE)
+    e_trade_gym = StockTradingEnv(df=trade_data, **env_kwargs)
+    # env_trade, obs_trade = e_trade_gym.get_sb_env()
+
+    df_account_value_ppo, df_actions_ppo = DRLAgent.DRL_prediction(
+        model=trained_ppo,
+        environment=e_trade_gym) if if_using_ppo else [None, None]
+
+    df_account_value_ddpg, df_actions_ddpg = DRLAgent.DRL_prediction(
+        model=trained_ddpg,
+        environment=e_trade_gym) if if_using_ddpg else [None, None]
+
+    df_account_value_a2c, df_actions_a2c = DRLAgent.DRL_prediction(
+        model=trained_a2c,
+        environment=e_trade_gym) if if_using_a2c else [None, None]
+
+    df_account_value_td3, df_actions_td3 = DRLAgent.DRL_prediction(
+        model=trained_td3,
+        environment=e_trade_gym) if if_using_td3 else [None, None]
+
+    df_account_value_sac, df_actions_sac = DRLAgent.DRL_prediction(
+        model=trained_sac,
+        environment=e_trade_gym) if if_using_sac else [None, None]
+
+    print("==============Get Backtest Results===========")
+    now = datetime.datetime.now().strftime('%Y%m%d-%Hh%M')
+
+    if if_using_ppo:
+        print("\n ppo:")
+        perf_stats_all_ppo = backtest_stats(account_value=df_account_value_ppo)
+        perf_stats_all_ppo = pd.DataFrame(perf_stats_all_ppo)
+        perf_stats_all_ppo.to_csv("./" + config.RESULTS_DIR + "/perf_stats_all_ppo_" + now + '.csv')
+
+    if if_using_ddpg:
+        print("\n ddpg:")
+        perf_stats_all_ddpg = backtest_stats(account_value=df_account_value_ddpg)
+        perf_stats_all_ddpg = pd.DataFrame(perf_stats_all_ddpg)
+        perf_stats_all_ddpg.to_csv("./" + config.RESULTS_DIR + "/perf_stats_all_ddpg_" + now + '.csv')
+
+    if if_using_a2c:
+        print("\n a2c:")
+        perf_stats_all_a2c = backtest_stats(account_value=df_account_value_a2c)
+        perf_stats_all_a2c = pd.DataFrame(perf_stats_all_a2c)
+        perf_stats_all_a2c.to_csv("./" + config.RESULTS_DIR + "/perf_stats_all_a2c_" + now + '.csv')
+
+    if if_using_td3:
+        print("\n atd3:")
+        perf_stats_all_td3 = backtest_stats(account_value=df_account_value_td3)
+        perf_stats_all_td3 = pd.DataFrame(perf_stats_all_td3)
+        perf_stats_all_td3.to_csv("./" + config.RESULTS_DIR + "/perf_stats_all_td3_" + now + '.csv')
+
+    if if_using_sac:
+        print("\n sac:")
+        perf_stats_all_sac = backtest_stats(account_value=df_account_value_sac)
+        perf_stats_all_sac = pd.DataFrame(perf_stats_all_sac)
+        perf_stats_all_sac.to_csv("./" + config.RESULTS_DIR + "/perf_stats_all_sac_" + now + '.csv')
+
+    # baseline stats
+    print("==============Get Baseline Stats===========")
+    baseline_df = get_baseline(
+        ticker="^DJI",
+        start=TEST_START_DATE,
+        end=TEST_END_DATE)
+
+    stats = backtest_stats(baseline_df, value_col_name='close')
+
+    print("==============Compare to DJIA===========")
+    % matplotlib
+    inline
+    # S&P 500: ^GSPC
+    # Dow Jones Index: ^DJI
+    # NASDAQ 100: ^NDX
+
+    if if_using_ppo:
+        backtest_plot(df_account_value_ppo,
+                      baseline_ticker='^DJI',
+                      baseline_start=TEST_START_DATE,
+                      baseline_end=TEST_END_DATE)
+
+    if if_using_ddpg:
+        backtest_plot(df_account_value_ddpg,
+                      baseline_ticker='^DJI',
+                      baseline_start=TEST_START_DATE,
+                      baseline_end=TEST_END_DATE)
+
+    if if_using_a2c:
+        backtest_plot(df_account_value_a2c,
+                      baseline_ticker='^DJI',
+                      baseline_start=TEST_START_DATE,
+                      baseline_end=TEST_END_DATE)
+
+    if if_using_td3:
+        backtest_plot(df_account_value_td3,
+                      baseline_ticker='^DJI',
+                      baseline_start=TEST_START_DATE,
+                      baseline_end=TEST_END_DATE)
+
+    if if_using_sac:
+        backtest_plot(df_account_value_sac,
+                      baseline_ticker='^DJI',
+                      baseline_start=TEST_START_DATE,
+                      baseline_end=TEST_END_DATE)
+
+
+
 
