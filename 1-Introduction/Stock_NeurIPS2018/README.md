@@ -1,4 +1,4 @@
-We show a workflow of applying ML/RL in algorithmic trading, which is a reproduction and improvement of the process in this [NeurIPS 2018 paper](https://arxiv.org/abs/1811.07522).
+We show a workflow of applying RL in algorithmic trading, which is a reproduction and improvement of the process in the [NeurIPS 2018 paper](https://arxiv.org/abs/1811.07522).
 
 # Usage
 
