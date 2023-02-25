@@ -24,6 +24,6 @@ It will generate a trained RL model .zip file. Here, we also provided a training
 
 Finally, run the notebook: *Stock_NeurIPS2018_3_Backtest.ipynb*.
 
-It backtests the trained agent, and compare the trading performances with two baselines: Mean-Variance Optimization and the market DJIA index. 
+It backtests the trained agent and compares with two baselines: Mean-Variance Optimization and the market DJIA index, respectively.
 
 At the end, it will plot a figure of the asset value during the backtest process.
