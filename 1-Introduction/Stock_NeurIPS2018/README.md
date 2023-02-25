@@ -26,4 +26,4 @@ Finally, run the notebook: *Stock_NeurIPS2018_3_Backtest.ipynb*.
 
 It backtests the trained agent and compares with two baselines: Mean-Variance Optimization and the market DJIA index, respectively.
 
-At the end, it will plot a figure of the asset value during the backtest process.
+At the end, it will plot a figure of the portfolio value during the backtest process.
