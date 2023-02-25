@@ -6,18 +6,24 @@ We show a workflow of applying ML/RL in algorithmic trading, which is a reproduc
 
 ## Step I. Data
 
-First, run the notebook *Stock_NeurIPS2018_1_Data.ipynb*. It downloads and preprocesses stocks' OHLCV data.
+First, run the notebook *Stock_NeurIPS2018_1_Data.ipynb*. 
+
+It downloads and preprocesses stocks' OHLCV data.
 
 It generates two csv files: *train.csv*, *trade.csv*. You can check the provided two sample files.
 
 ## Step II. Train a Trading Agent
 
-Second, run the notebook *Stock_NeurIPS2018_2_Train.ipynb*. It shows how to process the data into an OpenAI gym-style envrionment, and then train a DRL agent.
+Second, run the notebook *Stock_NeurIPS2018_2_Train.ipynb*. 
+
+It shows how to process the data into an OpenAI gym-style envrionment, and then train a DRL agent.
 
 It will generate a trained RL model .zip file. Here, we also provided a training A2C model in .zip file.
 
 ## Step III. Backtest
 
-The last step is backtesting. Run the notebook *Stock_NeurIPS2018_3_Backtest.ipynb* It backtest the agents, and compare the trading performances with two baselines: Mean-Variance Optimization and the market DJIA index. 
+The last step is backtesting. Run the notebook *Stock_NeurIPS2018_3_Backtest.ipynb*.
+
+It backtest the agents, and compare the trading performances with two baselines: Mean-Variance Optimization and the market DJIA index. 
 
 At the end, it will plot a figure of the asset value during the backtest process.
