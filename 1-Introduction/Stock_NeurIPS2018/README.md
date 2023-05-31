@@ -10,6 +10,8 @@ It downloads and preprocesses stocks' OHLCV data.
 
 It generates two csv files: *train.csv*, *trade.csv*. You can check the provided two sample files.
 
+You are welcome to use your own data. Just make sure adjust the dataframe to proper structure.
+
 ## Step II. Train a Trading Agent
 
 Second, run the notebook: *Stock_NeurIPS2018_2_Train.ipynb*. 
