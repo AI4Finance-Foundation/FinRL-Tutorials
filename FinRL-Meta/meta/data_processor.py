@@ -66,7 +66,7 @@ class DataProcessor:
             from meta.data_processors.ricequant import Ricequant
 
             processor_dict = {self.data_source: Ricequant}
-        elif self.data_source == DataSource.tushare:
+        elif self.data_source == DataSource.tushare.value:
             from meta.data_processors.tushare import Tushare
 
             processor_dict = {self.data_source: Tushare}
