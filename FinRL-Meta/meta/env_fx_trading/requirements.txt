@@ -1,0 +1,10 @@
+finta
+gym
+jupyterlab
+matplotlib
+mplfinance
+numpy
+pandas
+quantstats
+stable_baselines3
+torch
